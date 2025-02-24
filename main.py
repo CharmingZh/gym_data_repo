@@ -15,9 +15,9 @@ URL = "https://apps.recsports.msu.edu/volume/vol-table.php"
 
 # 📌 存储 CSV 文件（west、east、circle 均捕获）
 CSV_FILES = {
-    "west": "west.csv",
-    "east": "east.csv",
-    "circle": "circle.csv",
+    "west": "data/west.csv",
+    "east": "data/east.csv",
+    "circle": "data/circle.csv",
 }
 
 # 📌 记录时间范围（6:00 - 23:00，每 5 分钟，每小时 12 个数据）
