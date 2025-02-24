@@ -20,9 +20,9 @@ git pull --rebase --autostash origin main
 
 # 检查 docs/data/today_data.csv 是否有改动（避免提交空 commit）
 if ! git diff --quiet data/today_data.csv; then
-    git add data/today_data.csv circle.csv east.csv west.csv 
+    git add /home/zjm/gym_data_repo/data/today_data.csv /home/zjm/gym_data_repo/data/circle.csv /home/zjm/gym_data_repo/data/east.csv /home/zjm/gym_data_repo/data/west.csv 
     if ! git diff --quiet data/total_detailed_data.csv; then
-        git add data/total_detailed_data.csv
+        git add /home/zjm/gym_data_repo/data/total_detailed_data.csv
     else
         echo "No changes in total_detailed_data.csv, skipping commit."
     fi
