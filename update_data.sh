@@ -20,7 +20,7 @@ git pull --rebase --autostash origin master
 
 # 检查 docs/data/today_data.csv 是否有改动（避免提交空 commit）
 if ! git diff --quiet data/today_data.csv; then
-    git add data/today_data.csv docs/data/total_detailed_data.csv
+    git add data/today_data.csv data/total_detailed_data.csv
     git commit -m "Update today_data.csv on $(date +'%Y-%m-%d %H:%M:%S')"
     # 推送到远程仓库
     git push origin master
