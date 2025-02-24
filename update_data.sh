@@ -6,7 +6,7 @@ export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 export GIT_SSH_COMMAND='ssh -i /home/zjm/.ssh/id_ed25519 -o IdentitiesOnly=yes'
 
 # 切换到 Git 仓库目录
-cd /home/zjm/IsItBusy || exit
+cd /home/zjm/gym_data_repo || exit
 
 # 执行 Python 脚本更新 CSV 数据
 python3 scrape.py
@@ -16,15 +16,20 @@ git config user.name "Auto-data-update Robot"
 git config user.email "zhan2374@msu.edu"
 
 # 拉取远程仓库的更新，确保本地和远程保持同步
-git pull --rebase --autostash origin master
+git pull --rebase --autostash origin main
 
 # 检查 docs/data/today_data.csv 是否有改动（避免提交空 commit）
 if ! git diff --quiet data/today_data.csv; then
-    git add data/today_data.csv data/total_detailed_data.csv
+    git add data/today_data.csv 
+    if ! git diff --quiet data/total_detailed_data.csv; then
+        git add data/total_detailed_data.csv
+    else
+        echo "No changes in total_detailed_data.csv, skipping commit."
+    fi
     git commit -m "Update today_data.csv on $(date +'%Y-%m-%d %H:%M:%S')"
     # 推送到远程仓库
-    git push origin master
+    git push origin main
 else
-    echo "No changes in docs/data/today_data.csv, skipping commit."
+    echo "No changes in today_data.csv, skipping commit."
 fi
 
